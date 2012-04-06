@@ -7,6 +7,10 @@ package com.blogspot.nurkiewicz.kata.strcalc
 
 object StringCalculator {
 
-	def add(numbers: String) = 0
+	def add(numbers: String) = numbers.
+			split(""",\s*""").
+			filterNot(_.isEmpty).
+			map(_.toInt).
+			sum
 
 }
