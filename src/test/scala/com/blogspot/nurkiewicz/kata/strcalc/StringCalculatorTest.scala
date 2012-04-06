@@ -97,4 +97,12 @@ class StringCalculatorTest extends org.scalatest.FunSuite with ShouldMatchers {
 		add("""2, 1001""") should equal (2)
 	}
 
+	test("should support delimiters of arbitrary length") {
+		add("//[***]\n1***2***3") should equal (6)
+	}
+
+	test("should support delimiter of arbitrary length containing underscores") {
+		add("//[__]\n1__2__3") should equal (6)
+	}
+
 }
