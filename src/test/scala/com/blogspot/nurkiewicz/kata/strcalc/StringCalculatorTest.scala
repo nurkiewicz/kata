@@ -57,4 +57,8 @@ class StringCalculatorTest extends org.scalatest.FunSuite with ShouldMatchers {
 		add("""1\n2\n-4""") should equal (-1)
 	}
 
+	test("should support semicolon as custom delimiter") {
+		add("""//;\n1;2""") should equal (3)
+	}
+
 }
