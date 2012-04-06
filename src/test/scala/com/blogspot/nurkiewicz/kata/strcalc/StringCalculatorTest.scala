@@ -93,4 +93,8 @@ class StringCalculatorTest extends org.scalatest.FunSuite with ShouldMatchers {
 		e.getMessage should equal ("negatives not allowed: -1")
 	}
 
+	test("should ignore numbers greater than 1000") {
+		add("""2, 1001""") should equal (2)
+	}
+
 }
