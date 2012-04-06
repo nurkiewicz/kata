@@ -108,5 +108,9 @@ class StringCalculatorTest extends org.scalatest.FunSuite with ShouldMatchers {
 	test("should support multiple custom delimiters") {
 		add("//[*][%]\n1*2%3") should equal (6)
 	}
+	
+	test("should support multiple multi-character custom delimiters") {
+		add("//[ab][cde]\n1cde2ab3") should equal (6)
+	}
 
 }
