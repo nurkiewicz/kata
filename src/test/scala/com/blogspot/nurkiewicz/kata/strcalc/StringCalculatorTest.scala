@@ -23,8 +23,12 @@ class StringCalculatorTest extends org.scalatest.FunSuite with ShouldMatchers {
 		add("42") should equal (42)
 	}
 
-	test("should return single negative value") {
-		add("-42") should equal (-42)
+	test("should throw when single negative value") {
+		val e = intercept[IllegalArgumentException] {
+			add("-42")
+		}
+
+		e.getMessage should equal ("negatives not allowed: -42")
 	}
 
 	test("should return sum of two values") {
@@ -32,15 +36,27 @@ class StringCalculatorTest extends org.scalatest.FunSuite with ShouldMatchers {
 	}
 
 	test("should return sum of two values where second is negative") {
-		add("2, -3") should equal (-1)
+		val e = intercept[IllegalArgumentException] {
+			add("2, -3")
+		}
+
+		e.getMessage should equal ("negatives not allowed: -3")
 	}
 
 	test("should return 0 when positive and negative values provided with same absolute value") {
-		add("-4, 4") should equal (0)
+		val e = intercept[IllegalArgumentException] {
+			add("-4, 4")
+		}
+
+		e.getMessage should equal ("negatives not allowed: -4")
 	}
 	
 	test("should handle 5 numbers") {
-		add("1, -2, 3, -4, 5") should equal (3)
+		val e = intercept[IllegalArgumentException] {
+			add("1, -2, 3, -4, 5")
+		}
+
+		e.getMessage should equal ("negatives not allowed: -2, -4")
 	}
 	
 	test("should handle very long sequence of numbers") {
@@ -63,6 +79,14 @@ class StringCalculatorTest extends org.scalatest.FunSuite with ShouldMatchers {
 	
 	test("should support empty input with only delimiter set") {
 		add("//;\n") should equal (0)
+	}
+
+	test("should throw when negative value and custom delimiter") {
+		val e = intercept[IllegalArgumentException] {
+			add("//;\n-1;2")
+		}
+
+		e.getMessage should equal ("negatives not allowed: -1")
 	}
 
 }
