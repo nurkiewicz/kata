@@ -70,7 +70,11 @@ class StringCalculatorTest extends org.scalatest.FunSuite with ShouldMatchers {
 	}
 
 	test("should handle newline as the only separator of multiple values") {
-		add("""1\n2\n-4""") should equal (-1)
+		val e = intercept[IllegalArgumentException] {
+			add("""1\n2\n-4""")
+		}
+
+		e.getMessage should equal ("negatives not allowed: -4")
 	}
 
 	test("should support semicolon as custom delimiter") {
