@@ -38,5 +38,15 @@ class StringCalculatorTest extends org.scalatest.FunSuite with ShouldMatchers {
 	test("should return 0 when positive and negative values provided with same absolute value") {
 		add("-4, 4") should equal (0)
 	}
+	
+	test("should handle 5 numbers") {
+		add("1, -2, 3, -4, 5") should equal (3)
+	}
+	
+	test("should handle very long sequence of numbers") {
+		val numbers = 1 to 100 mkString ","
+		
+		add(numbers) should equal (5050)
+	}
 
 }
