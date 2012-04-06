@@ -58,7 +58,11 @@ class StringCalculatorTest extends org.scalatest.FunSuite with ShouldMatchers {
 	}
 
 	test("should support semicolon as custom delimiter") {
-		add("""//;\n1;2""") should equal (3)
+		add("//;\n1;2") should equal (3)
+	}
+	
+	test("should support empty input with only delimiter set") {
+		add("//;\n") should equal (0)
 	}
 
 }
