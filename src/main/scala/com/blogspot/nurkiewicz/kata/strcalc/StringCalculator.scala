@@ -7,8 +7,10 @@ package com.blogspot.nurkiewicz.kata.strcalc
 
 object StringCalculator {
 
+	val NumbersDelimiter = """(,\s*)|\\n"""
+
 	def add(numbers: String) = numbers.
-			split("""(,\s*)|\\n""").
+			split(NumbersDelimiter).
 			filterNot(_.isEmpty).
 			map(_.toInt).
 			sum
