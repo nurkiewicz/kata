@@ -11,10 +11,9 @@ object StringCalculator {
 
 	def add(numbers: String): Int =
 		if(numbers startsWith "//") {
-			val (delimiter :: input) = numbers.lines.toList
-			input match {
-				case nums :: _ => add(nums, delimiter.substring(2))
-				case Nil => 0
+			numbers.lines.toList match {
+				case delimiter :: nums :: _ => add(nums, delimiter.substring(2))
+				case _ :: Nil => 0
 			}
 		} else {
 			add(numbers, NumbersDelimiter)
