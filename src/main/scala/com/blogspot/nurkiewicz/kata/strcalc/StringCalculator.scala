@@ -9,23 +9,22 @@ object StringCalculator {
 
 	val NumbersDelimiter = """(,\s*)|\\n"""
 
-	def add(numbers: String) = 
+	def add(numbers: String): Int =
 		if(numbers startsWith "//") {
 			val (delimiter :: input) = numbers.lines.toList
 			input match {
-				case nums :: _ => nums.
-					split(delimiter.substring(2)).
-							filterNot(_.isEmpty).
-							map(_.toInt).
-							sum
+				case nums :: _ => add(nums, delimiter.substring(2))
 				case Nil => 0
 			}
 		} else {
-			numbers.
-				split(NumbersDelimiter).
+			add(numbers, NumbersDelimiter)
+		}
+
+	def add(numbers: String, delimiter: String): Int =
+		numbers.
+				split(delimiter).
 				filterNot(_.isEmpty).
 				map(_.toInt).
 				sum
-		}
 
 }
