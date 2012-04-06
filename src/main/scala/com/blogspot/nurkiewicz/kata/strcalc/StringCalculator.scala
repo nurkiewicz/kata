@@ -21,11 +21,17 @@ object StringCalculator {
 			add(numbers, NumbersDelimiter)
 		}
 
-	def add(numbers: String, delimiter: String): Int =
-		numbers.
+	def add(numbers: String, delimiter: String): Int = {
+		val extracted = numbers.
 				split(delimiter).
 				filterNot(_.isEmpty).
-				map(_.toInt).
-				sum
+				map(_.toInt)
+		val negatives = extracted.filter(_ < 0)
+		if(negatives.isEmpty) {
+			extracted.sum
+		} else {
+			throw new IllegalArgumentException("negatives not allowed: " + negatives.mkString(", "))
+		}
+	}
 
 }
