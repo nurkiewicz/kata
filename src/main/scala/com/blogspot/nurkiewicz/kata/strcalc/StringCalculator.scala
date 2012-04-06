@@ -19,7 +19,8 @@ object StringCalculator {
 				case delimiterLine :: nums :: _ =>
 					val delimiter = delimiterLine.substring(CustomDelimiterPrefix.size)
 					if((delimiter startsWith "[") && (delimiter endsWith "]")) {
-						add(nums, Pattern.quote(delimiter.tail.init))
+						val delimiters = delimiter.tail.init.split("\\]\\[").map(Pattern.quote).mkString("(", "|", ")")
+						add(nums, delimiters)
 					} else {
 						add(nums, Pattern.quote(delimiter))
 					}
