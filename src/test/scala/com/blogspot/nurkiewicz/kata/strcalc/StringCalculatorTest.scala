@@ -50,7 +50,7 @@ class StringCalculatorTest extends org.scalatest.FunSuite with ShouldMatchers {
 	}
 
 	test("should handle newline instead of comma as a separator") {
-		add("""1\n2,3""") should equal (5050)
+		add("""1\n2,3""") should equal (6)
 	}
 
 	test("should handle newline as the only separator of multiple values") {
