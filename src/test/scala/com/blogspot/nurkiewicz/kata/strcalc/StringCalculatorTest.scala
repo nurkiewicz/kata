@@ -3,12 +3,14 @@ package com.blogspot.nurkiewicz.kata.strcalc
 import org.scalatest.FunSuite
 import org.scalatest.matchers.ShouldMatchers
 import StringCalculator.add
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
 
 /**
  * @author Tomasz Nurkiewicz
  * @since 06.04.12, 22:51
  */
-
+@RunWith(classOf[JUnitRunner])
 class StringCalculatorTest extends org.scalatest.FunSuite with ShouldMatchers {
 
 	test("should return 0 for empty string") {
